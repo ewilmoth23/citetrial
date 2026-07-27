@@ -1,0 +1,69 @@
+[project]
+name = "citetrail-api"
+version = "0.1.0"
+description = "Provenance-first research workspace API"
+requires-python = ">=3.12,<3.14"
+dependencies = [
+  "alembic>=1.14,<2",
+  "beautifulsoup4>=4.12,<5",
+  "charset-normalizer>=3.4,<4",
+  "dateparser>=1.2,<2",
+  "fastapi>=0.115,<1",
+  "greenlet>=3.1,<4",
+  "httpx>=0.28,<0.29",
+  "pydantic-settings>=2.7,<3",
+  "pymupdf>=1.25,<2",
+  "python-multipart>=0.0.20,<1",
+  "sqlalchemy>=2.0,<3",
+  "structlog>=25.1,<26",
+  "trafilatura>=2.0,<3",
+  "uvicorn[standard]>=0.34,<1",
+]
+
+[project.optional-dependencies]
+semantic = ["chromadb>=1.0,<2", "sentence-transformers>=3.4,<4"]
+dev = [
+  "mypy>=1.14,<2",
+  "pip-tools>=7.6,<8",
+  "pre-commit>=4.1,<5",
+  "pytest>=9.0.3,<10",
+  "pytest-asyncio>=1.0,<2",
+  "pytest-cov>=6.0,<7",
+  "reportlab>=4.2,<5",
+  "respx>=0.22,<1",
+  "ruff>=0.9,<1",
+]
+
+[tool.ruff]
+target-version = "py312"
+line-length = 100
+
+[tool.ruff.lint]
+select = ["E", "F", "I", "B", "UP", "SIM", "S"]
+ignore = ["B008", "E501", "UP042", "UP046"]
+
+[tool.ruff.lint.per-file-ignores]
+"tests/*" = ["S101", "S104"]
+"app/retrieval/search.py" = ["S608"]
+
+[tool.mypy]
+python_version = "3.12"
+plugins = ["pydantic.mypy"]
+strict = true
+exclude = ["alembic"]
+
+[[tool.mypy.overrides]]
+module = ["fitz", "dateparser"]
+ignore_missing_imports = true
+
+[tool.pytest.ini_options]
+testpaths = ["tests"]
+addopts = "-q --strict-markers"
+asyncio_mode = "auto"
+
+[build-system]
+requires = ["hatchling"]
+build-backend = "hatchling.build"
+
+[tool.hatch.build.targets.wheel]
+packages = ["app"]

@@ -1,0 +1,16 @@
+name: Extraction problem
+description: Report a safe webpage or file extraction defect
+title: "[Extraction]: "
+labels: [extraction]
+body:
+  - type: dropdown
+    id: type
+    attributes: { label: Source type, options: [Webpage, PDF, Markdown, Text] }
+    validations: { required: true }
+  - type: textarea
+    id: problem
+    attributes: { label: Problem, description: Use synthetic/minimal content; do not attach private or copyrighted full text. }
+    validations: { required: true }
+  - type: textarea
+    id: warnings
+    attributes: { label: Processing status and warnings }

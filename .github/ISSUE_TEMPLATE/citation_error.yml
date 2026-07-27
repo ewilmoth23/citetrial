@@ -1,0 +1,16 @@
+name: Citation error
+description: Report a marker, location, excerpt, or quotation validation problem
+title: "[Citation]: "
+labels: [citation]
+body:
+  - type: textarea
+    id: expected
+    attributes: { label: Expected source/chunk/location relationship }
+    validations: { required: true }
+  - type: textarea
+    id: actual
+    attributes: { label: Actual behavior, description: Redact private source content. Use a minimal synthetic excerpt. }
+    validations: { required: true }
+  - type: textarea
+    id: mode
+    attributes: { label: Retrieval mode and provider availability }
