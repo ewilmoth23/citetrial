@@ -8,13 +8,53 @@
 
 Known gaps and caveats, stated up front:
 
-- Not yet exercised end-to-end outside development; expect rough edges on first run.
+- Run end-to-end against the synthetic demo project (API + built web app, screenshots below).
+  The Docker Compose path has not been re-verified since; expect rough edges there.
 - Retrieval quality has not been benchmarked against a labelled dataset.
 - Local, single-user, no authentication.
 
 Issues and pull requests are welcome. If something breaks on first run, that is
 useful information — please open an issue rather than assuming it works for
 everyone else.
+
+## Screenshots
+
+Real captures from a local run against the bundled synthetic demo project — five sources
+ingested, indexed, and linked to claims. No mockups.
+
+![Evidence matrix showing a disputed claim with one supporting and one contradicting excerpt side by side, and unresolved gaps marked explicitly](docs/images/citetrial-evidence-matrix.jpg)
+
+*The feature the whole project exists for. One claim is marked **DISPUTED** because two
+sources disagree on the same number — 8,240 validated weekday boardings in one, 7,510 in
+the other — and CiteTrail puts them side by side instead of averaging them, picking a
+winner, or hiding the loser. Empty quadrants read "Unresolved gap," not zero.*
+
+![Claim ledger showing one claim as insufficient evidence and one as disputed, each with supports/contradicts/contextualizes/uncertain counts](docs/images/citetrial-claims.jpg)
+
+*"Claims are propositions, not verdicts." A claim carries four independent evidence counts
+and stays proposed until a human reviews them. The open causal question — did nearby
+construction cause part of the ridership increase? — sits at **INSUFFICIENT EVIDENCE** with
+0/0/0/0 rather than being quietly resolved.*
+
+![Source library listing five ready sources with type, state, and context columns, several marked author unknown and date unknown](docs/images/citetrial-sources.jpg)
+
+*Provenance includes what is missing. Three sources show "Date unknown" and four show
+"Author unknown" because the documents genuinely lack that metadata — CiteTrail records the
+absence instead of inferring a plausible date. Imported text is treated as untrusted data:
+no script execution, no link following.*
+
+![Hybrid search results for the query ridership, each result showing a score and a source with page or heading location](docs/images/citetrial-search.jpg)
+
+*Hybrid retrieval — SQLite FTS5 fused with an offline deterministic semantic baseline — with
+the fusion score exposed per result and every hit resolved to a location you can open:
+`Harbor Loop Interim Evaluation · Page 2 · PDF`, `Harbor Loop Oversight Meeting › Questions
+still open`. Search is always project-scoped, and individual sources can be excluded to
+narrow the evidence boundary.*
+
+![Project overview with metric cards for sources ready, claims, unresolved items, and timeline events beside the research question and activity trail](docs/images/citetrial-project-overview.jpg)
+
+*Every project is organised around a primary question, and the counters track how far the
+evidence has actually got: 5/5 sources indexed, 2 claims (1 disputed), 1 unresolved.*
 
 **Evidence before prose.** CiteTrail is an open-source, local-first research workspace for collecting
 sources, preserving provenance, testing claims against evidence, building timelines, and writing briefs
