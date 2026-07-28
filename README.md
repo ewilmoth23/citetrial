@@ -1,5 +1,21 @@
 # CiteTrail
 
+
+## Project status
+
+> **Actively developed, pre-1.0.** This is a personal project built in the open, published so the
+> work can be read and run. It is not a supported product.
+
+Known gaps and caveats, stated up front:
+
+- Not yet exercised end-to-end outside development; expect rough edges on first run.
+- Retrieval quality has not been benchmarked against a labelled dataset.
+- Local, single-user, no authentication.
+
+Issues and pull requests are welcome. If something breaks on first run, that is
+useful information — please open an issue rather than assuming it works for
+everyone else.
+
 **Evidence before prose.** CiteTrail is an open-source, local-first research workspace for collecting
 sources, preserving provenance, testing claims against evidence, building timelines, and writing briefs
 whose important statements lead back to stored source text.
